@@ -1,6 +1,7 @@
 # 1. Base OS Setup
 
-**Prerequisite (manual, one-time):** Install Ubuntu Server 24.xx LTS on the NUC from a USB installer (https://ubuntu.com/desktop/docs/en/latest/how-to/create-a-bootable-usb-stick/). Note: follow the section titled `Using the Linux command line` to build the USB install disk from another Linux machine.
+**Prerequisite (manual, one-time):** Install Ubuntu Server 24.xx LTS on the NUC from a USB installer (https://ubuntu.com/desktop/docs/en/latest/how-to/create-a-bootable-usb-stick/).
+### Note: follow the section titled `Using the Linux command line` to build the USB install disk from another Linux machine. Once this step is complete, insert the USB stick into the right-hand USB 3.0 port and power on the NUC. It should default to a boot screen and automatically install Ubuntu once the wait timer concludes.
 
 During install: enable OpenSSH server, create your local admin user. This is the only step that can't be done remotely — everything after this point runs over SSH.
 
