@@ -1,0 +1,20 @@
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:stable
+    restart: unless-stopped
+    network_mode: host   # required for mDNS/local discovery (Google Home local control, HA device discovery)
+    volumes:
+      - /opt/platform-data/homeassistant/config:/config
+      - /etc/localtime:/etc/localtime:ro
+    # No ports: block needed — network_mode: host exposes 8123 directly on the NUC.
+
+  cloudflared:
+    container_name: cloudflared
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    network_mode: host   # must match homeassistant's host networking to reach it via 127.0.0.1:8123
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - homeassistant
+    # Public hostname ingress rule (set in the Cloudflare dashboard) points to http://127.0.0.1:8123
