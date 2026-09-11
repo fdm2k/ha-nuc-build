@@ -11,7 +11,7 @@ Host OS: Ubuntu Server 24.04 LTS, bare metal, no hypervisor. GPU is the onboard 
 
 Run these in sequence via SSH against a clean NUC. Each script is idempotent — safe to re-run.
 
-##### Script Does
+#### Script Does
 1.	`scripts/01-base-os.sh`	OS hardening baseline, packages, `/opt/platform-data` layout
 2.	`scripts/02-docker-install.sh`	Docker Engine + Compose plugin
 3.	`scripts/03-home-assistant.sh`	HA Container + Cloudflare Tunnel via Docker Compose
@@ -19,7 +19,7 @@ Run these in sequence via SSH against a clean NUC. Each script is idempotent —
 5.	`scripts/05-emulation-stack.sh`	RetroArch + ES-DE, kiosk autostart on HDMI
 6.	`scripts/06-backup-restic.sh`	restic → NAS (CIFS) + restic → Dropbox (rclone), daily systemd timer
 
-##### Full narrative docs:
+#### Full narrative docs:
 Includes manual steps that can't be scripted (Cloudflare dashboard, GitHub deploy key, NAS/Dropbox credentials), are in `docs/`:
 - `docs/00-hardware-reset.md` — start here if you don't have known-good access to the NUC (unknown BIOS state/password left over from its prior Nutanix AHV use, locked boot order, etc.). Skip straight to step 1 if you already have working BIOS/boot access.
 - `docs/01-os-base-setup.md`
@@ -29,9 +29,8 @@ Includes manual steps that can't be scripted (Cloudflare dashboard, GitHub deplo
 - `docs/05-backups.md`
 - `docs/06-bluetooth-proxy-appendix.md` — optional, for BLE devices out of the living room's range
 - `docs/architecture.md` — logical architecture view
-
-Secrets — never committed
+- Secrets — never committed
 - `docker/.env` and `scripts/secrets/` are git-ignored. They hold the Cloudflare Tunnel token, NAS CIFS credentials, rclone Dropbox token, and restic repository passwords. Every doc below tells you exactly what to put in them; nothing else in this repo needs editing to rebuild from scratch.
 
-GitHub
+#### GitHub
 Repo is change-controlled under the `fdm2k` GitHub account. Setup steps are in `docs/01-os-base-setup.md` (SSH deploy key generation and registration).
